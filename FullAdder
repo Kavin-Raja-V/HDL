@@ -1,0 +1,16 @@
+CHIP FullAdder {
+    IN a, b, c;
+    OUT sum, carry;
+
+    PARTS:
+    // First stage: sum of a and b
+    Xor(a=a, b=b, out=x1);
+    And(a=a, b=b, out=a1);
+
+    // Second stage: sum with carry-in
+    Xor(a=x1, b=c, out=sum);
+    And(a=x1, b=c, out=a2);
+
+    // Final carry
+    Or(a=a1, b=a2, out=carry);
+}
